@@ -1,0 +1,12 @@
+D:\github\Test-lib\WebApplication1\DataLayer\bin\Debug\netcoreapp3.1\DataLayer.deps.json
+D:\github\Test-lib\WebApplication1\DataLayer\bin\Debug\netcoreapp3.1\DataLayer.runtimeconfig.json
+D:\github\Test-lib\WebApplication1\DataLayer\bin\Debug\netcoreapp3.1\DataLayer.runtimeconfig.dev.json
+D:\github\Test-lib\WebApplication1\DataLayer\bin\Debug\netcoreapp3.1\DataLayer.dll
+D:\github\Test-lib\WebApplication1\DataLayer\bin\Debug\netcoreapp3.1\DataLayer.pdb
+D:\github\Test-lib\WebApplication1\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.AssemblyInfoInputs.cache
+D:\github\Test-lib\WebApplication1\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.AssemblyInfo.cs
+D:\github\Test-lib\WebApplication1\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.csproj.CoreCompileInputs.cache
+D:\github\Test-lib\WebApplication1\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.dll
+D:\github\Test-lib\WebApplication1\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.pdb
+D:\github\Test-lib\WebApplication1\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.genruntimeconfig.cache
+D:\github\Test-lib\WebApplication1\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.csprojAssemblyReference.cache

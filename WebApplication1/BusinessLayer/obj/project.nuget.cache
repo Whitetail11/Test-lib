@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tUxVRf1HsiP9yAKv/W7ByVOnb15aU8YbD10CRftvf1ETbYf5+a/NzDYDna7yA6chFjOjzB27RHDJEv3hjcNELQ==",
+  "dgSpecHash": "RswKCYp6Ifk/Q/wfdz0DOjwfsZp3r6YoZHi2gjE8Kmng//xFi3wVMQyCBUINDXg23MBdJxM6Lh6XbB7asefiJg==",
   "success": true,
-  "projectFilePath": "D:\\github\\Test-lib\\WebApplication1\\BusinessLayer\\OnlineLibray.BusinessLayer.csproj",
+  "projectFilePath": "D:\\github\\Test-lib\\WebApplication1\\BusinessLayer\\OnlineLibrary.BusinessLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CS_User\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\CS_User\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.2\\microsoft.aspnetcore.cryptography.internal.5.0.2.nupkg.sha512",

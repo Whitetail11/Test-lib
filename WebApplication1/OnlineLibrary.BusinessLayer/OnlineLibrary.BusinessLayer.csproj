@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+    <ProjectReference Include="..\OnlineLibrary.DataLayer\OnlineLibrary.DataLayer.csproj" />
   </ItemGroup>
 
 </Project>

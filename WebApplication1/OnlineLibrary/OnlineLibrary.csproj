@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
-    <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+    <ProjectReference Include="..\OnlineLibrary.BusinessLayer\OnlineLibrary.BusinessLayer.csproj" />
+    <ProjectReference Include="..\OnlineLibrary.DataLayer\OnlineLibrary.DataLayer.csproj" />
   </ItemGroup>
 
 </Project>

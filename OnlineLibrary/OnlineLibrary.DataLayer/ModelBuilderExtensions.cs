@@ -1,4 +1,5 @@
 ﻿using DataLayer.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,37 @@ namespace DataLayer
                     BookId = 3
                 }
                 );
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
+                    Name = "Admin",
+                    NormalizedName = "Admin".ToUpper()
+                },
+                new IdentityRole
+                {
+                    Name = "User",
+                    NormalizedName = "User".ToUpper()
+                }
+                );
+            var hasher = new PasswordHasher<User>();
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = "a18be9c0-aa61-4af8-bd17-00bd9344e277",
+                    Name = "admin",
+                    UserName = "admin",
+                    Email = "admin@gmail.com",
+                    PasswordHash = hasher.HashPassword(null, "admin")          
+                }
+                );
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
+                UserId = "a18be9c0-aa61-4af8-bd17-00bd9344e277"
+            }
+                );
+
         }
     }
 }

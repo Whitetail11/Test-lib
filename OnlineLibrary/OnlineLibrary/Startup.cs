@@ -58,6 +58,13 @@ namespace WebApplication1
 
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBookService, BookService>();
+
+           
+            //var builder = services.AddIdentityCore<User>();
+            //var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
+
+            //identityBuilder.AddEntityFrameworkStores<ApplicationDbContext>();
+            //identityBuilder.AddSignInManager<SignInManager<User>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -24,10 +24,11 @@ namespace WebApplication1
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        readonly string AngularOrigins;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            AngularOrigins = Configuration["Cors:Rules:0:Name"];
         }
         public void ConfigureServices(IServiceCollection services)
         {
@@ -39,10 +40,10 @@ namespace WebApplication1
                 options.UseSqlServer(Configuration.GetConnectionString("LibraryDatabase")));
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
+                options.AddPolicy(name : AngularOrigins,
                                   builder =>
                                   {
-                                      builder.WithOrigins("http://localhost:4200")
+                                      builder.WithOrigins(Configuration["Cors:Rules:0:Origin"])
                                         .AllowAnyHeader()
                                         .AllowAnyMethod();
                                   });
@@ -68,7 +69,7 @@ namespace WebApplication1
             }
             app.UseHttpsRedirection();
 
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(AngularOrigins);
 
             app.UseRouting();
 

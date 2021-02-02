@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xv40Sxnq4B3abTtzrRzwLDfUv1dyK31c5gf/755zUr0T/TonXjRYt7hdk/dyw2MbmkWq8bQicoRtd8USTcKHZA==",
+  "dgSpecHash": "J0mkQ9f/w0JV76FitDKbnSkWYObEtKi9RvctlDameFjogIQK7Ka+FKiZNU6GYrLrrUHupwIE9RVo0zu4hxz36Q==",
   "success": true,
-  "projectFilePath": "D:\\github\\Test-lib\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "D:\\github\\Test-lib\\WebApplication1\\WebApplication1\\OnlineLibray.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CS_User\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\CS_User\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

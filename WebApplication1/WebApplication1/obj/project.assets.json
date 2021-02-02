@@ -1578,21 +1578,21 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "BusinessLayer/1.0.0": {
+      "OnlineLibray.BusinessLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "AutoMapper": "10.1.1",
-          "DataLayer": "1.0.0"
+          "OnlineLibray.DataLayer": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/BusinessLayer.dll": {}
+          "bin/placeholder/OnlineLibray.BusinessLayer.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BusinessLayer.dll": {}
+          "bin/placeholder/OnlineLibray.BusinessLayer.dll": {}
         }
       },
-      "DataLayer/1.0.0": {
+      "OnlineLibray.DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -1601,10 +1601,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.2"
         },
         "compile": {
-          "bin/placeholder/DataLayer.dll": {}
+          "bin/placeholder/OnlineLibray.DataLayer.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DataLayer.dll": {}
+          "bin/placeholder/OnlineLibray.DataLayer.dll": {}
         }
       }
     }
@@ -5978,23 +5978,23 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "BusinessLayer/1.0.0": {
+    "OnlineLibray.BusinessLayer/1.0.0": {
       "type": "project",
-      "path": "../BusinessLayer/BusinessLayer.csproj",
-      "msbuildProject": "../BusinessLayer/BusinessLayer.csproj"
+      "path": "../BusinessLayer/OnlineLibray.BusinessLayer.csproj",
+      "msbuildProject": "../BusinessLayer/OnlineLibray.BusinessLayer.csproj"
     },
-    "DataLayer/1.0.0": {
+    "OnlineLibray.DataLayer/1.0.0": {
       "type": "project",
-      "path": "../DataLayer/DataLayer.csproj",
-      "msbuildProject": "../DataLayer/DataLayer.csproj"
+      "path": "../DataLayer/OnlineLibray.DataLayer.csproj",
+      "msbuildProject": "../DataLayer/OnlineLibray.DataLayer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper >= 10.1.1",
-      "BusinessLayer >= 1.0.0",
-      "DataLayer >= 1.0.0",
-      "Microsoft.EntityFrameworkCore.Design >= 5.0.2"
+      "Microsoft.EntityFrameworkCore.Design >= 5.0.2",
+      "OnlineLibray.BusinessLayer >= 1.0.0",
+      "OnlineLibray.DataLayer >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6003,9 +6003,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\github\\Test-lib\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
-      "projectName": "WebApplication1",
-      "projectPath": "D:\\github\\Test-lib\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "D:\\github\\Test-lib\\WebApplication1\\WebApplication1\\OnlineLibray.csproj",
+      "projectName": "OnlineLibray",
+      "projectPath": "D:\\github\\Test-lib\\WebApplication1\\WebApplication1\\OnlineLibray.csproj",
       "packagesPath": "C:\\Users\\CS_User\\.nuget\\packages\\",
       "outputPath": "D:\\github\\Test-lib\\WebApplication1\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
@@ -6024,11 +6024,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\github\\Test-lib\\WebApplication1\\BusinessLayer\\BusinessLayer.csproj": {
-              "projectPath": "D:\\github\\Test-lib\\WebApplication1\\BusinessLayer\\BusinessLayer.csproj"
+            "D:\\github\\Test-lib\\WebApplication1\\BusinessLayer\\OnlineLibray.BusinessLayer.csproj": {
+              "projectPath": "D:\\github\\Test-lib\\WebApplication1\\BusinessLayer\\OnlineLibray.BusinessLayer.csproj"
             },
-            "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\DataLayer.csproj": {
-              "projectPath": "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\DataLayer.csproj"
+            "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\OnlineLibray.DataLayer.csproj": {
+              "projectPath": "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\OnlineLibray.DataLayer.csproj"
             }
           }
         }

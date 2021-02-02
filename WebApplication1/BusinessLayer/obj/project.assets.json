@@ -1552,7 +1552,7 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "DataLayer/1.0.0": {
+      "OnlineLibray.DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -1561,10 +1561,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.2"
         },
         "compile": {
-          "bin/placeholder/DataLayer.dll": {}
+          "bin/placeholder/OnlineLibray.DataLayer.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DataLayer.dll": {}
+          "bin/placeholder/OnlineLibray.DataLayer.dll": {}
         }
       }
     }
@@ -5907,16 +5907,16 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "DataLayer/1.0.0": {
+    "OnlineLibray.DataLayer/1.0.0": {
       "type": "project",
-      "path": "../DataLayer/DataLayer.csproj",
-      "msbuildProject": "../DataLayer/DataLayer.csproj"
+      "path": "../DataLayer/OnlineLibray.DataLayer.csproj",
+      "msbuildProject": "../DataLayer/OnlineLibray.DataLayer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper >= 10.1.1",
-      "DataLayer >= 1.0.0"
+      "OnlineLibray.DataLayer >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5925,9 +5925,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\github\\Test-lib\\WebApplication1\\BusinessLayer\\BusinessLayer.csproj",
-      "projectName": "BusinessLayer",
-      "projectPath": "D:\\github\\Test-lib\\WebApplication1\\BusinessLayer\\BusinessLayer.csproj",
+      "projectUniqueName": "D:\\github\\Test-lib\\WebApplication1\\BusinessLayer\\OnlineLibray.BusinessLayer.csproj",
+      "projectName": "OnlineLibray.BusinessLayer",
+      "projectPath": "D:\\github\\Test-lib\\WebApplication1\\BusinessLayer\\OnlineLibray.BusinessLayer.csproj",
       "packagesPath": "C:\\Users\\CS_User\\.nuget\\packages\\",
       "outputPath": "D:\\github\\Test-lib\\WebApplication1\\BusinessLayer\\obj\\",
       "projectStyle": "PackageReference",
@@ -5946,8 +5946,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\DataLayer.csproj": {
-              "projectPath": "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\DataLayer.csproj"
+            "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\OnlineLibray.DataLayer.csproj": {
+              "projectPath": "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\OnlineLibray.DataLayer.csproj"
             }
           }
         }

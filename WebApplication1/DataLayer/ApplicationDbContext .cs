@@ -36,6 +36,7 @@ namespace DataLayer
             modelBuilder.Entity<UsersBooks>()
                 .HasKey(ub => new { ub.UserId, ub.BookId });
 
+            modelBuilder.Seed();
             //modelBuilder.Entity<UsersBooks>()
             //    .HasOne(ba => ba.User)
             //    .WithMany(b => b.UsersBooks)

@@ -5961,9 +5961,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\DataLayer.csproj",
-      "projectName": "DataLayer",
-      "projectPath": "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\DataLayer.csproj",
+      "projectUniqueName": "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\OnlineLibray.DataLayer.csproj",
+      "projectName": "OnlineLibray.DataLayer",
+      "projectPath": "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\OnlineLibray.DataLayer.csproj",
       "packagesPath": "C:\\Users\\CS_User\\.nuget\\packages\\",
       "outputPath": "D:\\github\\Test-lib\\WebApplication1\\DataLayer\\obj\\",
       "projectStyle": "PackageReference",

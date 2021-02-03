@@ -27,7 +27,7 @@ namespace OnlineLibrary.Controllers
             var res = await this.userService.Register(model);
             if(!res.Succeeded)
             {
-                return BadRequest(res.Error);
+                return BadRequest(res.Errors);
             }
             return Ok(res.Token);
         }
@@ -38,7 +38,7 @@ namespace OnlineLibrary.Controllers
             var res = await this.userService.Login(model);
             if(!res.Succeeded)
             {
-                return BadRequest(res.Error);
+                return BadRequest(res.Errors);
             }
             return Ok(res.Token);
         }

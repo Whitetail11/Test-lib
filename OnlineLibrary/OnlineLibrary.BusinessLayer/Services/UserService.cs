@@ -48,7 +48,7 @@ namespace OnlineLibrary.BusinessLayer.Services
                 issuer: configuration["JWT:ValidIssuer"],
                 audience: configuration["JWT:ValidAudience"],
                 notBefore: now,
-                expires: DateTime.Now.AddHours(3),
+                expires: now.AddHours(3),
                 claims: await GetUserClaims(user),
                 signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"])), SecurityAlgorithms.HmacSha256)
                 );
@@ -59,7 +59,7 @@ namespace OnlineLibrary.BusinessLayer.Services
         {
             var userExists = await userManager.FindByNameAsync(model.Name);
             if (userExists != null)
-                return new AccountResult("User already exists!");
+                return new AccountResult(new List<string>() { "User already exists!" });
             User user = new User()
             {
                 Email = model.Email,
@@ -68,7 +68,10 @@ namespace OnlineLibrary.BusinessLayer.Services
             };
             var result = await userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return new AccountResult("User creation failed! Please check user details and try again.");
+            {
+                var errors = result.Errors.Select(error => error.Description);
+                return new AccountResult(errors);
+            }
             var token = await this.GenerateJWT(user);
             return new AccountResult(true, token);
         }
@@ -77,9 +80,9 @@ namespace OnlineLibrary.BusinessLayer.Services
         {
             var user = await userManager.FindByNameAsync(model.Name);
             if (user == null)
-                return new AccountResult("User not found!");
-            if (await userManager.CheckPasswordAsync(user, model.Password))
-                return new AccountResult("Uncorrect password");            
+                return new AccountResult(new List<string>() { "User not found!" });
+            if (!(await userManager.CheckPasswordAsync(user, model.Password)))
+                return new AccountResult(new List<string>() { "Uncorrect password" });            
             var token = await this.GenerateJWT(user);
             return new AccountResult(true, token);
         }

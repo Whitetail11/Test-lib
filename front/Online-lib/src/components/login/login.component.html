@@ -1,6 +1,6 @@
 
 <div class="main">
-    <h1 align="center">Log In</h1>
+    <h1 align="center">Sign In</h1>
         <form [formGroup]="form" (ngSubmit)="login()" class="wrapper" >
             <mat-form-field appearance="outline">
                 <mat-label>UserName</mat-label>
@@ -12,7 +12,11 @@
                 <input matInput type="password" formControlName="password" required>  
                 <mat-error *ngIf="form.get('password').invalid">Password is required</mat-error>
             </mat-form-field>
-            <button mat-raised-button
-                [disabled]="form.invalid">Log In</button>
+            <div class="buttons">
+                <button mat-raised-button color="primary" id="sign-up-button" type="button" (click)="toReg()"
+                >Sign Up</button>
+                <button mat-raised-button id="sign-in-button"
+                [disabled]="form.invalid" color="primary">Sign In</button>
+            </div>
         </form>
 </div>

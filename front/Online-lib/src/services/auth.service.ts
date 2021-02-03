@@ -7,6 +7,7 @@ import { Login } from 'src/models/Login';
 import { Token } from 'src/models/Token';
 import { tap } from 'rxjs/operators';
 import { Register } from 'src/models/Register';
+import { environment } from 'src/environments/environment';
 
 export const ACCESS_TOKEN_KEY = 'access_token'
 
@@ -22,17 +23,17 @@ export class AuthService {
     private jwtHelper: JwtHelperService
   ) { }
 
-  api = 'https://localhost:5001/api';
+  api = environment.apiUrl;
 
   login(login: Login): Observable<Token> {
-    return this.httpClient.post<Token>(`${this.api}/account/login`, login).pipe(
+    return this.httpClient.post<Token>(`${this.api}account/login`, login).pipe(
       tap(token => {
         localStorage.setItem(ACCESS_TOKEN_KEY, token.access_token);
       })
     );
   }
   register(register: Register): Observable<Token> {
-    return this.httpClient.post<Token>(`${this.api}/account/register`, register).pipe(
+    return this.httpClient.post<Token>(`${this.api}account/register`, register).pipe(
       tap(token => {
         localStorage.setItem(ACCESS_TOKEN_KEY, token.access_token);
       })
@@ -40,7 +41,7 @@ export class AuthService {
   }
   logout(): void {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
-    this.router.navigate(['']);
+    this.router.navigate(['login']);
   }
 
   isAuthenticated(): boolean {

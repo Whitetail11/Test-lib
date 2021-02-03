@@ -28,11 +28,14 @@ export class LoginComponent implements OnInit {
     const login: Login = this.form.value;
 
     this.authService.login(login).subscribe((value) => {
-      console.log('value');
       this.router.navigate(['books']);
     }, error => {
       console.log(error)
       this.error = error.error[0];
     });
+  }
+
+  toReg() {
+    this.router.navigate(['register']);
   }
 }

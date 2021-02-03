@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using OnlineLibrary.BusinessLayer.Classes;
 using OnlineLibrary.BusinessLayer.Interfaces;
 using OnlineLibrary.BusinessLayer.ViewModels;
 using System;
@@ -25,7 +26,7 @@ namespace OnlineLibrary.BusinessLayer.Services
             this.roleManager = roleManager;
             this.configuration = configuration;
         }
-        public async Task<IEnumerable<Claim>> GetUserClaims(User user)
+        private async Task<IEnumerable<Claim>> GetUserClaims(User user)
         {
             var claims = new List<Claim>()
             {
@@ -40,7 +41,7 @@ namespace OnlineLibrary.BusinessLayer.Services
             }
             return claims;
         }
-        public async Task<string> GenerateJWT(User user)
+        private async Task<string> GenerateJWT(User user)
         {
             var now = DateTime.UtcNow;
             var token = new JwtSecurityToken(
@@ -54,11 +55,11 @@ namespace OnlineLibrary.BusinessLayer.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public async Task<string> Register(RegisterViewModel model)
+        public async Task<AccountResult> Register(RegisterViewModel model)
         {
             var userExists = await userManager.FindByNameAsync(model.Name);
             if (userExists != null)
-                return "";
+                return new AccountResult("User already exists!");
             User user = new User()
             {
                 Email = model.Email,
@@ -67,20 +68,20 @@ namespace OnlineLibrary.BusinessLayer.Services
             };
             var result = await userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return "";
+                return new AccountResult("User creation failed! Please check user details and try again.");
             var token = await this.GenerateJWT(user);
-            return token;
+            return new AccountResult(true, token);
         }
 
-        public async Task<string> Login(LoginViewModel model)
+        public async Task<AccountResult> Login(LoginViewModel model)
         {
             var user = await userManager.FindByNameAsync(model.Name);
-            if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
-            {
-                var token = await this.GenerateJWT(user);
-                return token;
-            }
-            return "";
+            if (user == null)
+                return new AccountResult("User not found!");
+            if (await userManager.CheckPasswordAsync(user, model.Password))
+                return new AccountResult("Uncorrect password");            
+            var token = await this.GenerateJWT(user);
+            return new AccountResult(true, token);
         }
     }
 }

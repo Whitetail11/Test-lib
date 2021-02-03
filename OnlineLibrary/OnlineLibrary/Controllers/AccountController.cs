@@ -24,11 +24,23 @@ namespace OnlineLibrary.Controllers
         [Route("Register")]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            var token = await this.userService.Register(model);
-            if (token != "")
-                return Ok(token);
-            return Ok();
+            var res = await this.userService.Register(model);
+            if(!res.Succeeded)
+            {
+                return BadRequest(res.Error);
+            }
+            return Ok(res.Token);
         }
-        
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            var res = await this.userService.Login(model);
+            if(!res.Succeeded)
+            {
+                return BadRequest(res.Error);
+            }
+            return Ok(res.Token);
+        }
     }
 }

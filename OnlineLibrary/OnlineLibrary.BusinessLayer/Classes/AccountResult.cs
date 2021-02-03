@@ -9,17 +9,16 @@ namespace OnlineLibrary.BusinessLayer.Classes
     {
         public bool Succeeded { get; }
         public string Token { get; }
-        public string Error { get; }
-
+        public IEnumerable<string> Errors { get; }
         public AccountResult(bool succeeded, string token)
         {
             Succeeded = succeeded;
             Token = token;
         }
 
-        public AccountResult(string error)
+        public AccountResult(IEnumerable<string> errors)
         {
-            Error = error;
+            Errors = errors;
         }
     }
 }

@@ -16,6 +16,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using OnlineLibrary.BusinessLayer.Interfaces;
+using OnlineLibrary.BusinessLayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +37,11 @@ namespace WebApplication1
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric = false;
+            }
+                )
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -63,6 +69,7 @@ namespace WebApplication1
 
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddAuthentication(options =>
             {

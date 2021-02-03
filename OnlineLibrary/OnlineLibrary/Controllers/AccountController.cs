@@ -29,7 +29,7 @@ namespace OnlineLibrary.Controllers
             {
                 return BadRequest(res.Errors);
             }
-            return Ok(res.Token);
+            return Ok(new { access_token = res.Token });
         }
         [HttpPost]
         [Route("Login")]
@@ -40,7 +40,7 @@ namespace OnlineLibrary.Controllers
             {
                 return BadRequest(res.Errors);
             }
-            return Ok(res.Token);
+            return Ok(new { access_token = res.Token });
         }
     }
 }

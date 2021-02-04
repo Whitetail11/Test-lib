@@ -30,7 +30,6 @@ export class RegistrComponent implements OnInit {
     this.authService.register(registr).subscribe(() => {
       this.router.navigate(['books']);
     }, error => {
-      console.log(error)
       this.error = error.error[0];
     })
   }

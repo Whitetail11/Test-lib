@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { ToastrModule } from 'ngx-toastr';
 
 import { LoginComponent } from '../components/login/login.component'
 import { RegistrComponent } from '../components/registr/registr.component'
@@ -40,6 +41,7 @@ export function tokenGetter() {
     HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
+    ToastrModule.forRoot(), 
     MatButtonModule,
     MatCardModule,
     JwtModule.forRoot({

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Login } from 'src/models/Login';
 import { AuthService } from 'src/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router,  private toastr: ToastrService) { }
 
   error: string;
   form: FormGroup;
@@ -28,9 +29,10 @@ export class LoginComponent implements OnInit {
     const login: Login = this.form.value;
 
     this.authService.login(login).subscribe((value) => {
-      this.router.navigate(['books']);
+      this.router.navigate(['']);
     }, error => {
       this.error = error.error[0];
+      this.toastr.error(this.error);
     });
   }
 

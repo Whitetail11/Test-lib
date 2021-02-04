@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registr',
@@ -10,7 +11,7 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class RegistrComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) { }
   
   error: string;
   form: FormGroup;
@@ -28,9 +29,10 @@ export class RegistrComponent implements OnInit {
     const registr = this.form.value;
 
     this.authService.register(registr).subscribe(() => {
-      this.router.navigate(['books']);
+      this.router.navigate(['']);
     }, error => {
       this.error = error.error[0];
+      this.toastr.error(this.error);
     })
   }
   toLog() {

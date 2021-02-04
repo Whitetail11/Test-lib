@@ -34,15 +34,6 @@ export class RegistrComponent implements OnInit {
       this.error = error.error[0];
     })
   }
-
-  getEmailErrorMessage() {
-    if (this.form.get('email').hasError('required'))
-    {
-      return 'Email is required';
-    }
-    return 'Email is invalid';
-  }
-
   toLog() {
     this.router.navigate(['login']);
   }

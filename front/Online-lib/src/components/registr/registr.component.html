@@ -10,8 +10,8 @@
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" required>  
-                <mat-error *ngIf="form.get('email').errors.required">Email is required</mat-error>
-                <mat-error *ngIf="form.get('email').errors.email">Email is invalid</mat-error>
+                <mat-error *ngIf="form.get('email').errors?.required">Email is required</mat-error>
+                <mat-error *ngIf="form.get('email').errors?.email">Email is invalid</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>

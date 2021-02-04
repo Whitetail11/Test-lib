@@ -9,7 +9,7 @@ namespace BusinessLayer.Interfaces
     {
         ICollection<BookDTO> GetBooks();
         BookDTO GetById(int id);
-        void TakeBook(int bookId);
-        void ReturnBook(int bookId);
+        bool TakeBook(int bookId, string userId);
+        bool ReturnBook(int bookId, string userId);
     }
 }

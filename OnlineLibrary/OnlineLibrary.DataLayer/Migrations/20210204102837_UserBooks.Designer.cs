@@ -4,14 +4,16 @@ using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210204102837_UserBooks")]
+    partial class UserBooks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -209,15 +211,14 @@ namespace DataLayer.Migrations
                         {
                             Id = "a18be9c0-aa61-4af8-bd17-00bd9344e277",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "36a6696f-2085-47cb-b095-6b9856745871",
+                            ConcurrencyStamp = "07e3e145-450a-45f2-8641-6b56e96f8b60",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@GMAIL.COM",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAELvxX0ytrh+ZhuZuRzvBCFCoYM9O8yu52/q1gTEI5lI2tZPhMUEjfq2O6e4XT0O+1A==",
+                            Name = "admin",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ8G4ObV8UhW0w4wt/bDL6+DH3ozT7E4eoqLBd4a2Ty0gq9sE7IbmTbeDYArhXtIkA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "589b370f-44a5-425e-ab9b-d65a8ebbd06c",
+                            SecurityStamp = "017332f8-ac37-4aba-96cb-a93f020573fa",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -268,14 +269,14 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
-                            ConcurrencyStamp = "4166278d-eb1a-46ba-98b3-1a5258e94d7b",
+                            ConcurrencyStamp = "d61d6fac-c721-4de6-8fa7-e036ecb867b8",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "c779c246-b304-4f50-82b4-047f1fcf6c00",
-                            ConcurrencyStamp = "071a99bc-97de-4d3d-a3e4-6dad4f2a0400",
+                            Id = "5e83124a-5dbc-461b-b878-6bf9b4015bb6",
+                            ConcurrencyStamp = "913fe8be-4967-48f1-ac16-d0bb0253ea97",
                             Name = "User",
                             NormalizedName = "USER"
                         });

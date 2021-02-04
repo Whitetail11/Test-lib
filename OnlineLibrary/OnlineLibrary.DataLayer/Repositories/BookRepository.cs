@@ -11,11 +11,20 @@ namespace DataLayer.Repositories
     public class BookRepository : Repository<Book>, IBookRepository
     {
         public BookRepository(ApplicationDbContext context) : base(context) { }
+        private bool NotHasBook(int bookId, string userId)
+        {
+            var res = _dbContext.UsersBooks.AsNoTracking().FirstOrDefault(ub => ub.UserId == userId && ub.BookId == bookId);
+            if (res == null)
+                return true;
+            return false;
+        }
         public ICollection<Book> GetBooks()
         {
-            return _dbContext.Books
+            return _dbContext.Books.AsNoTracking()
+                .Include(book => book.UsersBooks)
+                    .ThenInclude(usersBooks => usersBooks.User)
                 .Include(book => book.BookAuthors)
-                .ThenInclude(bookAuthor => bookAuthor.Authors)
+                    .ThenInclude(bookAuthor => bookAuthor.Authors)
                 .ToList();
         }
 
@@ -23,31 +32,50 @@ namespace DataLayer.Repositories
         {
             return _dbContext.Books.AsNoTracking()
                 .Where(book => book.Id == id)
+                .Include(book => book.UsersBooks)
+                    .ThenInclude(usersBooks => usersBooks.User)
                 .Include(book => book.BookAuthors)
                     .ThenInclude(bookAuthor => bookAuthor.Authors)
                     .FirstOrDefault();
         }
 
-        public void ReturnBook(int bookId)
+        public bool ReturnBook(int bookId, string userId)
         {
             Book result = _dbContext.Books.Find(bookId);
-            result.Available++;
-            _dbContext.Books.Update(result);
-            _dbContext.SaveChanges();
-        }
-
-        public void TakeBook(int bookId)
-        {
-            Book result = _dbContext.Books.Find(bookId);
-            if(result.Amount > 0)
+            UsersBooks usersBooks = new UsersBooks();
+            usersBooks.BookId = bookId;
+            usersBooks.UserId = userId;
+            if(!this.NotHasBook(bookId, userId))
             {
-                result.Available--;
+                result.Available++;
                 _dbContext.Books.Update(result);
+                _dbContext.UsersBooks.Remove(usersBooks);
                 _dbContext.SaveChanges();
+                return true;
             }
             else
             {
+                return false;
+            }
+        }
 
+        public bool TakeBook(int bookId, string userId)
+        {
+            Book result = _dbContext.Books.Find(bookId);
+            UsersBooks usersBooks = new UsersBooks();
+            usersBooks.BookId = bookId;
+            usersBooks.UserId = userId;
+            if (result.Amount > 0 && this.NotHasBook(bookId,userId))
+            {
+                result.Available--;
+                _dbContext.Books.Update(result);
+                _dbContext.UsersBooks.Add(usersBooks);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

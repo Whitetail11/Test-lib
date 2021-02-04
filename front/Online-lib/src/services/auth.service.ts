@@ -41,7 +41,7 @@ export class AuthService {
   }
   logout(): void {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
 
   isAuthenticated(): boolean {
@@ -52,5 +52,10 @@ export class AuthService {
   decodeToken() {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
     return this.jwtHelper.decodeToken(token);
+  }
+  isAdmin() {
+    if(this.isAuthenticated())
+      return this.decodeToken().role === "Admin";
+    else return false
   }
 }

@@ -3,10 +3,24 @@
         <h1>{{ book.name}}</h1>
         <p>Amount: {{book.amount}}</p>
         <p>Available: {{book.available}}</p>
-        <div class="buttons">
+        <p *ngIf="book.authors.length">Author(s): </p>
+        <div class="authors" *ngFor="let author of book.authors">
+            <p>{{author.name}}</p>
+        </div>
+        <div class="forAdmin" *ngIf="isAdmin()">
+            <p *ngIf="book.users.length">Owner(s): </p>
+            <div class="users" *ngFor="let user of book.users">
+                <p>{{user.name}}</p>
+            </div>
+        </div>
+        <div class="buttons" *ngIf="isLogIn()">
             <button mat-raised-button class="takeButton" color="primary" (click)="takeBook(book.id)">Take book</button>
             <button mat-raised-button class="returnButton" color="primary" (click)="returnBook(book.id)">Return book</button>
         </div>
     </mat-card>
-    <button mat-raised-button (click)="logOut()" class="logOutButton" color="warn">Log Out</button>
+    <div class="signButtons" *ngIf="!isLogIn()">
+        <button mat-raised-button  (click)="toLog()" class="signInButton" color="primary">Sign In</button>
+        <button mat-raised-button  (click)="toReg()" class="signUpButton" color="primary">Sign Up</button>
+    </div>
+    <button mat-raised-button *ngIf="isLogIn()" (click)="logOut()" class="logOutButton" color="warn">Log Out</button>
 </div>

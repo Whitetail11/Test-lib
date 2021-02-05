@@ -2,6 +2,7 @@
 using BusinessLayer.DTOs;
 using BusinessLayer.Interfaces;
 using DataLayer.Interfaces;
+using OnlineLibrary.DataLayer.Classes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,10 +19,15 @@ namespace BusinessLayer.Services
             this.mapper = mapper;
             this.bookRepository = bookRepository;
         }
-        public ICollection<BookDTO> GetBooks()
+        public ICollection<BookDTO> GetBooks(BookQueryModel booksParametrs)
         {
-            var res = this.bookRepository.GetBooks();
-            return mapper.Map<ICollection<BookDTO>>(this.bookRepository.GetBooks());
+            var res = this.bookRepository.GetBooks(booksParametrs);
+            return mapper.Map<ICollection<BookDTO>>(res);
+        }
+
+        public int GetBooksCount()
+        {
+            return this.bookRepository.GetBooksCount();
         }
 
         public BookDTO GetById(int id)

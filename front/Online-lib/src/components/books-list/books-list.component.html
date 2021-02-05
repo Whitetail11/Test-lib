@@ -69,7 +69,12 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumnsForUser;"></tr>
         </div>
     </table>
-    <mat-paginator [pageSizeOptions]="[3, 5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <mat-paginator 
+            [length]="length"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="pageEvent = getBooksForPageData($event)"
+            showFirstLastButtons></mat-paginator>
     <div class="signButtons" *ngIf="!isLogIn()">
         <button mat-raised-button  (click)="toLog()" class="signInButton" color="primary">Sign In</button>
         <button mat-raised-button  (click)="toReg()" class="signUpButton" color="primary">Sign Up</button>

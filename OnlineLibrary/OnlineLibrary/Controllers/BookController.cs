@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnlineLibrary.DataLayer.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,10 +24,10 @@ namespace WebApplication1.Controllers
             return Ok(this.bookService.GetById(id));
         }
         [Route("Get")]
-        [HttpGet]
-        public IActionResult Get()
+        [HttpPost]
+        public IActionResult GetPage(BookQueryModel bookQueryModel)
         {
-            return Ok(this.bookService.GetBooks());
+            return Ok(this.bookService.GetBooks(bookQueryModel));
         }
         [Route("Take")]
         [Authorize]
@@ -47,6 +48,12 @@ namespace WebApplication1.Controllers
                 return Ok();
             else
                 return BadRequest("You have no this book");
+        }
+        [HttpGet]
+        [Route ("Count")]
+        public IActionResult GetBooksCount()
+        {
+            return Ok(this.bookService.GetBooksCount());
         }
     }
 }

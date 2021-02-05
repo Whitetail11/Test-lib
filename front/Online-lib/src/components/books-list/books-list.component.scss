@@ -1,6 +1,4 @@
-.main {
-    width: 700px;
-    margin: 20px auto;
+.mat-elevation-z8 {
     .signButtons {
         display: flex;
         justify-content: space-around;
@@ -16,7 +14,6 @@
     .logOutButton {
         margin-top: 20px;
     }
-    .card {
         background-color: darkgray;
         border-radius: 20px;
         border: solid black 1px;
@@ -24,8 +21,10 @@
         .buttons {
             display: flex;
             justify-content: space-around;
-            .takeButton { width: 30%;}
-            .returnButton { width: 30%;}
+            .takeButton { width: 20%;}
+            .returnButton { width: 20%;}
         }
-    }
 }
+table {
+    width: 100%;
+  }

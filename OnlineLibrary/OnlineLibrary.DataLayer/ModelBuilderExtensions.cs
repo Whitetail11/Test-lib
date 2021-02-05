@@ -32,6 +32,55 @@ namespace DataLayer
                     Name = "Математика",
                     Amount = 3,
                     Available = 3
+                },
+                new Book
+                {
+                    Id = 4,
+                    Name = "Математика4",
+                    Amount = 5,
+                    Available = 5
+                },
+                new Book
+                {
+                    Id = 5,
+                    Name = "42Математика",
+                    Amount = 3,
+                    Available = 3
+                },
+                new Book
+                {
+                    Id = 6,
+                    Name = "99Математика",
+                    Amount = 1,
+                    Available = 1
+                },
+                new Book
+                {
+                    Id = 7,
+                    Name = "Математика",
+                    Amount = 8,
+                    Available = 8
+                },
+                new Book
+                {
+                    Id = 8,
+                    Name = "1Математика",
+                    Amount = 2,
+                    Available = 2
+                },
+                new Book
+                {
+                    Id = 9,
+                    Name = "22Сияние",
+                    Amount = 5,
+                    Available = 5
+                },
+                new Book
+                {
+                    Id = 10,
+                    Name = "55Сияние",
+                    Amount = 5,
+                    Available = 5
                 }
                 );
             modelBuilder.Entity<Author>().HasData(
@@ -76,6 +125,41 @@ namespace DataLayer
                 {
                     AuthorId = 4,
                     BookId = 3
+                },
+                new BookAuthor
+                {
+                    AuthorId = 1,
+                    BookId = 4
+                },
+                new BookAuthor
+                {
+                    AuthorId = 1,
+                    BookId = 5
+                },
+                new BookAuthor
+                {
+                    AuthorId = 1,
+                    BookId = 6
+                },
+                new BookAuthor
+                {
+                    AuthorId = 1,
+                    BookId = 7
+                },
+                new BookAuthor
+                {
+                    AuthorId = 1,
+                    BookId = 8
+                },
+                new BookAuthor
+                {
+                    AuthorId = 1,
+                    BookId = 9
+                },
+                new BookAuthor
+                {
+                    AuthorId = 1,
+                    BookId = 10
                 }
                 );
             modelBuilder.Entity<IdentityRole>().HasData(

@@ -12,18 +12,18 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router,  private toastr: ToastrService) { }
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) { }
 
   error: string;
   form: FormGroup;
-  
+
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}')])
-      });
+    });
   }
-  
+
   login() {
     this.error = null;
     const login: Login = this.form.value;

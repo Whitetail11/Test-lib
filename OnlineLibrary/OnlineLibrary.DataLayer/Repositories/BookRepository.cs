@@ -19,7 +19,12 @@ namespace DataLayer.Repositories
                 return true;
             return false;
         }
-        
+        public User GetUserBooks(string id)
+        {
+            return _dbContext.Users.Include(user => user.UsersBooks)
+                .ThenInclude(ub => ub.Book)
+                .FirstOrDefault(user => user.Id == id);
+        }
         public ICollection<Book> GetBooks(BookQueryModel booksParametrs)
         {
             return _dbContext.Books.AsNoTracking()

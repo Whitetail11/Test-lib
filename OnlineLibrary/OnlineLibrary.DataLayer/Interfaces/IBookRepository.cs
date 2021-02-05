@@ -13,5 +13,6 @@ namespace DataLayer.Interfaces
         bool TakeBook(int bookId, string userId);
         bool ReturnBook(int bookId, string userId);
         int GetBooksCount();
+        User GetUserBooks(string id);
     }
 }

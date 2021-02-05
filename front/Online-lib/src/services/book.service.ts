@@ -27,4 +27,7 @@ export class BookService {
   getCount(): Observable<number> {
     return this.httpClient.get<number>(`${this.api}book/count`);
   }
+  getUserBooks(id: string) : Observable <Book[]> {
+    return this.httpClient.get<Book[]>(`${this.api}book/books?id=${id}`);
+  }
 }

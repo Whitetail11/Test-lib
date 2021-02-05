@@ -55,5 +55,12 @@ namespace WebApplication1.Controllers
         {
             return Ok(this.bookService.GetBooksCount());
         }
+        [HttpGet]
+        [Route("Books")]
+        public IActionResult GetUserBooks(string id)
+        {
+            var user = bookService.GetUserBooks(id);
+            return Ok(user.Books);
+        }
     }
 }

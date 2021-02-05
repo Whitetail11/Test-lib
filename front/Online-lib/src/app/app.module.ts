@@ -16,10 +16,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { LoginComponent } from '../components/login/login.component'
 import { RegistrComponent } from '../components/registr/registr.component'
 import { BooksListComponent } from '../components/books-list/books-list.component'
+import { ToTakeDialogComponent } from '../components/to-take-dialog/to-take-dialog.component'
+import { ToReturnDialogComponent } from '../components/to-return-dialog/to-return-dialog.component'
 
 import { environment } from 'src/environments/environment';
 
@@ -35,7 +38,9 @@ export function tokenGetter() {
     AppComponent,
     LoginComponent,
     RegistrComponent,
-    BooksListComponent
+    BooksListComponent,
+    ToTakeDialogComponent,
+    ToReturnDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,7 @@ export function tokenGetter() {
     MatTableModule,
     MatSortModule,
     MatInputModule,
-    ToastrModule.forRoot(), 
+    ToastrModule.forRoot(),
     MatButtonModule,
     MatCardModule,
     JwtModule.forRoot({
@@ -57,6 +62,7 @@ export function tokenGetter() {
       }
     }),
     FormsModule,
+    MatDialogModule,
     ReactiveFormsModule
   ],
   providers: [],

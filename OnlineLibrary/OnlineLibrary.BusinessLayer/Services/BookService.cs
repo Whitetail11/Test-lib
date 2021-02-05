@@ -25,6 +25,11 @@ namespace BusinessLayer.Services
             return mapper.Map<ICollection<BookDTO>>(res);
         }
 
+        public UserDTO GetUserBooks(string id)
+        {
+            var res = bookRepository.GetUserBooks(id);
+            return mapper.Map<UserDTO>(res);
+        }
         public int GetBooksCount()
         {
             return this.bookRepository.GetBooksCount();

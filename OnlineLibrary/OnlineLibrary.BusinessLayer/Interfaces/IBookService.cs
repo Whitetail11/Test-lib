@@ -13,5 +13,6 @@ namespace BusinessLayer.Interfaces
         bool TakeBook(int bookId, string userId);
         bool ReturnBook(int bookId, string userId);
         int GetBooksCount();
+        UserDTO GetUserBooks(string id);
     }
 }

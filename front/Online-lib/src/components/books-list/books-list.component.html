@@ -1,38 +1,14 @@
-<!--<div class="main">
-    <mat-card *ngFor="let book of books" class="card">
-        <h1>{{ book.name}}</h1>
-        <p>Amount: {{book.amount}}</p>
-        <p>Available: {{book.available}}</p>
-        <p *ngIf="book.authors.length">Author(s): </p>
-        <div class="authors" *ngFor="let author of book.authors">
-            <p>{{author.name}}</p>
-        </div>
-        <div class="forAdmin" *ngIf="isAdmin()">
-            <p *ngIf="book.users.length">Owner(s): </p>
-            <div class="users" *ngFor="let user of book.users">
-                <p>{{user.name}}</p>
-            </div>
-        </div>
-        <div class="buttons" *ngIf="isLogIn()">
-            <button mat-raised-button class="takeButton" color="primary" (click)="takeBook(book.id)">Take book</button>
-            <button mat-raised-button class="returnButton" color="primary" (click)="returnBook(book.id)">Return book</button>
-        </div>
-    </mat-card>
-    <div class="signButtons" *ngIf="!isLogIn()">
-        <button mat-raised-button  (click)="toLog()" class="signInButton" color="primary">Sign In</button>
-        <button mat-raised-button  (click)="toReg()" class="signUpButton" color="primary">Sign Up</button>
-    </div>
-    <button mat-raised-button *ngIf="isLogIn()" (click)="logOut()" class="logOutButton" color="warn">Log Out</button>
-</div>!-->
-
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort >
+    <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-            <td mat-cell *matCellDef="let book"> <h1>{{book.name}}</h1>
+            <td mat-cell *matCellDef="let book">
+                <h1>{{book.name}}</h1>
                 <div class="buttons" *ngIf="isLogIn()">
-                    <button mat-raised-button class="takeButton" color="primary" (click)="takeBook(book.id)">Take book</button>
-                    <button mat-raised-button class="returnButton" color="primary" (click)="returnBook(book.id)">Return book</button>
+                    <button mat-raised-button class="takeBook" color="primary"
+                        (click)="openDialogueToTake(book.id)" [disabled]="isUserHasBook(book.id)">Take book</button>
+                    <button mat-raised-button class="takeBook" color="primary"
+                        (click)="openDialogueToReturn(book.id)" [disabled]="!isUserHasBook(book.id)">Return book</button>
                 </div>
             </td>
         </ng-container>
@@ -69,15 +45,11 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumnsForUser;"></tr>
         </div>
     </table>
-    <mat-paginator 
-            [length]="length"
-            [pageSize]="pageSize"
-            [pageSizeOptions]="pageSizeOptions"
-            (page)="pageEvent = getBooksForPageData($event)"
-            showFirstLastButtons></mat-paginator>
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = getBooksForPageData($event)" showFirstLastButtons></mat-paginator>
     <div class="signButtons" *ngIf="!isLogIn()">
-        <button mat-raised-button  (click)="toLog()" class="signInButton" color="primary">Sign In</button>
-        <button mat-raised-button  (click)="toReg()" class="signUpButton" color="primary">Sign Up</button>
+        <button mat-raised-button (click)="toLog()" class="signInButton" color="primary">Sign In</button>
+        <button mat-raised-button (click)="toReg()" class="signUpButton" color="primary">Sign Up</button>
     </div>
     <button mat-raised-button *ngIf="isLogIn()" (click)="logOut()" class="logOutButton" color="warn">Log Out</button>
 </div>

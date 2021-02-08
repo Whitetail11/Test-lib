@@ -9,7 +9,7 @@ namespace DataLayer.Interfaces
     {
         Book GetById(int id);
         ICollection<Book> GetBooks();
-        void TakeBook(int bookId);
-        void ReturnBook(int bookId);
+        bool TakeBook(int bookId, string userId);
+        bool ReturnBook(int bookId, string userId);
     }
 }

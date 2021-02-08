@@ -20,6 +20,7 @@ namespace BusinessLayer.Services
         }
         public ICollection<BookDTO> GetBooks()
         {
+            var res = this.bookRepository.GetBooks();
             return mapper.Map<ICollection<BookDTO>>(this.bookRepository.GetBooks());
         }
 
@@ -28,14 +29,14 @@ namespace BusinessLayer.Services
             return mapper.Map<BookDTO>(this.bookRepository.GetById(id));
         }
 
-        public void ReturnBook(int bookId)
+        public bool ReturnBook(int bookId, string userId)
         {
-            this.bookRepository.ReturnBook(bookId);
+            return this.bookRepository.ReturnBook(bookId, userId);
         }
 
-        public void TakeBook(int bookId)
+        public bool TakeBook(int bookId, string userId)
         {
-            this.bookRepository.TakeBook(bookId);
+            return this.bookRepository.TakeBook(bookId, userId);
         }
     }
 }

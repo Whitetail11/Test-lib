@@ -29,20 +29,24 @@ namespace WebApplication1.Controllers
             return Ok(this.bookService.GetBooks());
         }
         [Route("Take")]
-        [HttpPut]
         [Authorize]
-        public IActionResult TakeBook(int bookId)
+        [HttpPut]
+        public IActionResult TakeBook(int bookId, string userId)
         {
-            bookService.TakeBook(bookId);
-            return Ok();
+            if (bookService.TakeBook(bookId, userId))
+                return Ok();
+            else
+                return BadRequest("Book is not available");
         }
         [Route("Return")]
-        [HttpPut]
         [Authorize]
-        public IActionResult ReturnBook(int bookId)
+        [HttpPut]
+        public IActionResult ReturnBook(int bookId, string userId)
         {
-            bookService.ReturnBook(bookId);
-            return Ok();
+            if (bookService.ReturnBook(bookId, userId))
+                return Ok();
+            else
+                return BadRequest("You have no this book");
         }
     }
 }

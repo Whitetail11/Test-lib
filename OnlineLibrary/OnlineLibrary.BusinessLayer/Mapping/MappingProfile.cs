@@ -12,6 +12,7 @@ namespace BusinessLayer.Mapping
     {
         public MappingProfile()
         {
+            CreateMap<User, UserDTO>();
             CreateMap<Book, BookDTO>()
                 .ForMember(j => j.Authors, opt => opt.MapFrom(
                     route => route.BookAuthors.ToList().Select(
@@ -25,7 +26,7 @@ namespace BusinessLayer.Mapping
                     route => route.UsersBooks.ToList().Select(
                         el => new UserDTO
                         {
-                            Name = el.User.Name
+                            Name = el.User.UserName
                         }
                         )
                     ));

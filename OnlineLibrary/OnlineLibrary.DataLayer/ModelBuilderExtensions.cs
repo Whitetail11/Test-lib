@@ -96,10 +96,11 @@ namespace DataLayer
                 new User
                 {
                     Id = "a18be9c0-aa61-4af8-bd17-00bd9344e277",
-                    Name = "admin",
                     UserName = "admin",
+                    NormalizedUserName = "ADMIN",
                     Email = "admin@gmail.com",
-                    PasswordHash = hasher.HashPassword(null, "admin")          
+                    NormalizedEmail = "ADMIN@GMAIL.COM",
+                    PasswordHash = hasher.HashPassword(null, "Admin12345")          
                 }
                 );
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>

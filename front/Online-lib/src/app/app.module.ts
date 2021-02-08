@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 import { LoginComponent } from '../components/login/login.component'
 import { RegistrComponent } from '../components/registr/registr.component'
@@ -40,6 +41,7 @@ export function tokenGetter() {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatCardModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

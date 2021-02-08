@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnlineLibrary.BusinessLayer.ViewModels;
 using OnlineLibrary.DataLayer.Classes;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly IBookService bookService; 
+        private readonly IBookService bookService;
         public BookController(IBookService bookService)
         {
             this.bookService = bookService;
@@ -27,7 +28,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult GetPage(BookQueryModel bookQueryModel)
         {
-            return Ok(this.bookService.GetBooks(bookQueryModel));
+            return Ok(new ResponseViewModel(this.bookService.GetBooks(bookQueryModel), this.bookService.GetBooksCount()));
         }
         [Route("Take")]
         [Authorize]
@@ -48,12 +49,6 @@ namespace WebApplication1.Controllers
                 return Ok();
             else
                 return BadRequest("You have no this book");
-        }
-        [HttpGet]
-        [Route ("Count")]
-        public IActionResult GetBooksCount()
-        {
-            return Ok(this.bookService.GetBooksCount());
         }
         [HttpGet]
         [Route("Books")]

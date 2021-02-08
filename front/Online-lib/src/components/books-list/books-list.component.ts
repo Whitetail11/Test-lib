@@ -9,8 +9,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { BookQueryModel } from 'src/models/BookQueryModel';
-import { ToTakeDialogComponent } from '../to-take-dialog/to-take-dialog.component';
-import { ToReturnDialogComponent } from '../to-return-dialog/to-return-dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-books-list',
@@ -28,7 +27,6 @@ export class BooksListComponent implements OnInit {
 
   books: Book[] = null;
   displayedColumns: string[] = ['name', 'amount', 'available', 'authors', 'users'];
-  displayedColumnsForUser: string[] = ['name', 'amount', 'available', 'authors'];
   dataSource: MatTableDataSource<Book>;
   length = 100;
   pageSize = 3;
@@ -44,6 +42,7 @@ export class BooksListComponent implements OnInit {
   ngOnInit(): void {
     this.getBooks(this.pageSize, 1);
     this.getBooksOfUser();
+    this.isAdminTable();
   }
 
   isUserHasBook(id: number) {
@@ -55,33 +54,49 @@ export class BooksListComponent implements OnInit {
     return res;
   }
   getBooksOfUser() {
-    this.bookService.getUserBooks(this.authService.decodeToken().userid).subscribe((res) => {
-      this.userBooks = res;
+    if (this.isLogIn())
+      this.bookService.getUserBooks(this.authService.decodeToken().userid).subscribe((res) => {
+        this.userBooks = res;
+      })
+  }
+  openDialogue(id: number, action: string): void {
+    console.log(action);
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: { bookId: id, userId: this.authService.decodeToken().userid, action }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (action === 'take')
+          this.takeBook(id);
+        if (action === 'return')
+          this.returnBook(id);
+      }
+    });
+  }
+
+  returnBook(id: number) {
+    this.bookService.returnBook(this.authService.decodeToken().userid, id).subscribe(() => {
+      this.toastr.success("You successfully return book");
+      this.getBooks(this.pageSize, this.pageNumber);
+      this.getBooksOfUser();
+    }, error => {
+      this.toastr.error(error.error);
     })
   }
-  openDialogueToTake(id: number): void {
-    const dialogRef = this.dialog.open(ToTakeDialogComponent, {
-      width: '400px',
-      data: { bookId: id, userId: this.authService.decodeToken().userid }
-    });
-    dialogRef.afterClosed().subscribe(result => {
+
+  takeBook(id: number) {
+    this.bookService.takeBook(this.authService.decodeToken().userid, id).subscribe(() => {
+      this.toastr.success("You successfully taken book");
       this.getBooks(this.pageSize, this.pageNumber);
       this.getBooksOfUser();
-    });
-  }
-  openDialogueToReturn(id: number): void {
-    const dialogRef = this.dialog.open(ToReturnDialogComponent, {
-      width: '400px',
-      data: { bookId: id, userId: this.authService.decodeToken().userid }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.getBooks(this.pageSize, this.pageNumber);
-      this.getBooksOfUser();
-    });
+    }, error => {
+      this.toastr.error(error.error);
+    })
   }
   getBooksForPageData(event?: PageEvent) {
     this.bookService.getAllBooks({ count: event.pageSize, pageNumber: +event.pageIndex + 1 }).subscribe((res) => {
-      this.books = res;
+      this.books = res.books;
       this.dataSource = new MatTableDataSource<Book>(this.books);
       this.dataSource.sort = this.sort;
       this.pageSize = event.pageSize;
@@ -92,27 +107,28 @@ export class BooksListComponent implements OnInit {
 
   getBooks(pageSize, pageNumber) {
     this.bookService.getAllBooks({ count: pageSize, pageNumber: pageNumber }).subscribe((res) => {
-      this.books = res;
+      this.books = res.books;
       this.dataSource = new MatTableDataSource<Book>(this.books);
       this.dataSource.sort = this.sort;
-      this.bookService.getCount().subscribe((res) => {
-        this.length = res;
-      })
+      this.length = res.count;
     });
   }
-  toLog() {
-    this.router.navigate(['login']);
+  isAdminTable() {
+    let res = this.isAdmin();
+    if (!res) {
+      this.displayedColumns = ['name', 'amount', 'available', 'authors'];
+    }
+    return res;
   }
 
   isAdmin() {
     return this.authService.isAdmin();
   }
-  toReg() {
-    this.router.navigate(['register']);
-  }
+
   isLogIn() {
     return this.authService.isAuthenticated();
   }
+
   logOut() {
     this.authService.logout();
   }

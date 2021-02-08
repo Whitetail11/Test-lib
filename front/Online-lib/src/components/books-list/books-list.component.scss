@@ -1,17 +1,5 @@
 .mat-elevation-z8 {
-    .signButtons {
-        display: flex;
-        justify-content: space-around;
-        .signInButton {
-            width: 30%;
-            margin-top: 20px;
-        }
-        .signUpButton {
-            width: 30%;
-            margin-top: 20px;
-        }
-    }
-    .logOutButton {
+    .log-out-button {
         margin-top: 20px;
     }
         background-color: darkgray;
@@ -19,8 +7,8 @@
         .buttons {
             display: flex;
             justify-content: space-around;
-            .takeButton { width: 20%;}
-            .returnButton { width: 20%;}
+            .take-button { width: 20%;}
+            .return-button { width: 20%;}
         }
 }
 table {

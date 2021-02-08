@@ -1,17 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { AuthService } from 'src/services/auth.service';
 import { BookService } from 'src/services/book.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BooksListComponent } from '../books-list/books-list.component';
 import { DialogData } from 'src/models/DialogeData';
-
 @Component({
-  selector: 'app-to-take-dialog',
-  templateUrl: './to-take-dialog.component.html',
-  styleUrls: ['./to-take-dialog.component.scss']
+  selector: 'app-dialog',
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.scss']
 })
-export class ToTakeDialogComponent implements OnInit {
+export class DialogComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
@@ -23,17 +21,11 @@ export class ToTakeDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  takeBook() {
-    this.bookService.takeBook(this.data.userId, this.data.bookId).subscribe(() => {
-      this.toastr.success("You successfully taken book");
-      this.closeDialoge();
-    }, error => {
-      this.toastr.error(error.error);
-      this.closeDialoge();
-    })
+  isReturn() {
+    return this.data.action === 'return';
   }
+
   closeDialoge(): void {
     this.dialogRef.close();
   }
-
 }

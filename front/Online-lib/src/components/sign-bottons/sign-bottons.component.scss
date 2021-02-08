@@ -1,0 +1,12 @@
+.sign-buttons {
+    display: flex;
+    justify-content: space-around;
+    .sign-in-button {
+        width: 30%;
+        margin-top: 20px;
+    }
+    .sign-up-button {
+        width: 30%;
+        margin-top: 20px;
+    }
+}

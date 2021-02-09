@@ -1,0 +1,10 @@
+<div class="return" *ngIf="isReturn()">
+    <h1>Are you sure to return the book?</h1>
+    <button mat-raised-button color="primary" [mat-dialog-close]="'return'">Return book</button>
+    <button mat-button mat-dialog-close>No thanks</button>
+</div>
+<div class="return" *ngIf="!isReturn()">
+    <h1>Are you sure to take the book?</h1>
+    <button mat-raised-button color="primary" [mat-dialog-close]="'take'">Return book</button>
+    <button mat-button mat-dialog-close>No thanks</button>
+</div>

@@ -7,6 +7,7 @@
         flex-direction: column;
         .buttons {
             display: flex;
+            margin-top: 40px;
             flex-direction: row;
             justify-content: space-around;
             #sign-in-button {

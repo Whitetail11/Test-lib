@@ -1,20 +1,17 @@
-.main {
-    width: 700px;
-    margin: 20px auto;
-
-    .logOutButton {
+.mat-elevation-z8 {
+    .log-out-button {
         margin-top: 20px;
     }
-    .card {
         background-color: darkgray;
-        border-radius: 20px;
-        border: solid black 1px;
         margin-top: 2px;
         .buttons {
             display: flex;
             justify-content: space-around;
-            .takeButton { width: 30%;}
-            .returnButton { width: 30%;}
+            .take-button { width: 20%;}
+            .return-button { width: 20%;}
         }
-    }
 }
+table {
+    width: 100%;
+  }
+  

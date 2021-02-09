@@ -1,6 +1,7 @@
 ﻿using DataLayer.Interfaces;
 using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
+using OnlineLibrary.DataLayer.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +19,21 @@ namespace DataLayer.Repositories
                 return true;
             return false;
         }
-        public ICollection<Book> GetBooks()
+        public User GetUserBooks(string id)
+        {
+            return _dbContext.Users.Include(user => user.UsersBooks)
+                .ThenInclude(ub => ub.Book)
+                .FirstOrDefault(user => user.Id == id);
+        }
+        public ICollection<Book> GetBooks(BookQueryModel booksParametrs)
         {
             return _dbContext.Books.AsNoTracking()
                 .Include(book => book.UsersBooks)
                     .ThenInclude(usersBooks => usersBooks.User)
                 .Include(book => book.BookAuthors)
                     .ThenInclude(bookAuthor => bookAuthor.Authors)
+                .Skip((booksParametrs.PageNumber - 1) * booksParametrs.Count)
+                .Take(booksParametrs.Count)
                 .ToList();
         }
 
@@ -77,6 +86,11 @@ namespace DataLayer.Repositories
             {
                 return false;
             }
+        }
+
+        public int GetBooksCount()
+        {
+            return _dbContext.Books.Count();
         }
     }
 }

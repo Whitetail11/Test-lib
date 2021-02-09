@@ -12,11 +12,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { ToastrModule } from 'ngx-toastr';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { LoginComponent } from '../components/login/login.component'
 import { RegistrComponent } from '../components/registr/registr.component'
 import { BooksListComponent } from '../components/books-list/books-list.component'
-
+import { ConfirmationDialogComponent } from '../components/dialog/confirmation-dialog.component'
+import { SignBottonsComponent } from '../components/sign-bottons/sign-bottons.component'
+ 
 import { environment } from 'src/environments/environment';
 
 
@@ -31,15 +38,21 @@ export function tokenGetter() {
     AppComponent,
     LoginComponent,
     RegistrComponent,
-    BooksListComponent
+    BooksListComponent,
+    ConfirmationDialogComponent,
+    SignBottonsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatPaginatorModule,
     HttpClientModule,
     MatFormFieldModule,
+    MatTableModule,
+    MatSortModule,
     MatInputModule,
+    ToastrModule.forRoot(),
     MatButtonModule,
     MatCardModule,
     JwtModule.forRoot({
@@ -49,6 +62,7 @@ export function tokenGetter() {
       }
     }),
     FormsModule,
+    MatDialogModule,
     ReactiveFormsModule
   ],
   providers: [],

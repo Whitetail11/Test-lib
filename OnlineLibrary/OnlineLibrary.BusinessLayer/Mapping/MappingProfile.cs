@@ -12,7 +12,17 @@ namespace BusinessLayer.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<User, UserDTO>();
+            CreateMap<User, UserDTO>()
+                .ForMember(j => j.Books, opt => opt.MapFrom(
+                    route => route.UsersBooks.ToList().Select(
+                            el => new BookDTO
+                            {
+                                Name = el.Book.Name,
+                                Id = el.Book.Id
+                            }
+                        )
+                    ));
+                ;
             CreateMap<Book, BookDTO>()
                 .ForMember(j => j.Authors, opt => opt.MapFrom(
                     route => route.BookAuthors.ToList().Select(

@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~11.1.1",
+    "@angular/animations": "^11.1.2",
     "@angular/cdk": "^11.1.1",
     "@angular/common": "~11.1.1",
     "@angular/compiler": "~11.1.1",
@@ -23,6 +23,7 @@
     "@angular/router": "~11.1.1",
     "@auth0/angular-jwt": "^5.0.2",
     "angular-jwt": "^0.1.11",
+    "ngx-toastr": "^13.2.0",
     "rxjs": "^6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

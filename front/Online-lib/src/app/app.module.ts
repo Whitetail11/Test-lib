@@ -21,7 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from '../components/login/login.component'
 import { RegistrComponent } from '../components/registr/registr.component'
 import { BooksListComponent } from '../components/books-list/books-list.component'
-import { DialogComponent } from '../components/dialog/dialog.component'
+import { ConfirmationDialogComponent } from '../components/dialog/confirmation-dialog.component'
 import { SignBottonsComponent } from '../components/sign-bottons/sign-bottons.component'
  
 import { environment } from 'src/environments/environment';
@@ -39,7 +39,7 @@ export function tokenGetter() {
     LoginComponent,
     RegistrComponent,
     BooksListComponent,
-    DialogComponent,
+    ConfirmationDialogComponent,
     SignBottonsComponent
   ],
   imports: [

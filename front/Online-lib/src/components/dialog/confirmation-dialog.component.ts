@@ -5,11 +5,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BooksListComponent } from '../books-list/books-list.component';
 import { DialogData } from 'src/models/DialogeData';
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  selector: 'app-confirmation-dialog',
+  templateUrl: './confirmation-dialog.component.html',
+  styleUrls: ['./confirmation-dialog.component.scss']
 })
-export class DialogComponent implements OnInit {
+export class ConfirmationDialogComponent implements OnInit {
 
   constructor(
     private bookService: BookService,

@@ -28,7 +28,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult GetPage(BookQueryModel bookQueryModel)
         {
-            return Ok(new ResponseViewModel(this.bookService.GetBooks(bookQueryModel), this.bookService.GetBooksCount()));
+            return Ok(new BookResponseModel(this.bookService.GetBooks(bookQueryModel), this.bookService.GetBooksCount()));
         }
         [Route("Take")]
         [Authorize]

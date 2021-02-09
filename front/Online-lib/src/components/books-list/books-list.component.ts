@@ -9,7 +9,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { BookQueryModel } from 'src/models/BookQueryModel';
-import { DialogComponent } from '../dialog/dialog.component';
+import { ConfirmationDialogComponent } from '../dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-books-list',
@@ -41,36 +41,25 @@ export class BooksListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBooks(this.pageSize, 1);
-    this.getBooksOfUser();
-    this.isAdminTable();
+    this.setTableColumns();
   }
 
   isUserHasBook(id: number) {
-    let res = false;
-    this.userBooks.forEach(book => {
-      if (book.id === id)
-        res = true;
-    });
-    return res;
+    return this.userBooks.find(book => book.id === id)
   }
   getBooksOfUser() {
     if (this.isLogIn())
-      this.bookService.getUserBooks(this.authService.decodeToken().userid).subscribe((res) => {
-        this.userBooks = res;
-      })
+      return this.bookService.getUserBooks(this.authService.decodeToken().userid);
   }
   openDialogue(id: number, action: string): void {
     console.log(action);
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '400px',
       data: { bookId: id, userId: this.authService.decodeToken().userid, action }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (action === 'take')
-          this.takeBook(id);
-        if (action === 'return')
-          this.returnBook(id);
+        action === 'take' ? this.takeBook(id) : this.returnBook(id);
       }
     });
   }
@@ -79,7 +68,6 @@ export class BooksListComponent implements OnInit {
     this.bookService.returnBook(this.authService.decodeToken().userid, id).subscribe(() => {
       this.toastr.success("You successfully return book");
       this.getBooks(this.pageSize, this.pageNumber);
-      this.getBooksOfUser();
     }, error => {
       this.toastr.error(error.error);
     })
@@ -89,7 +77,6 @@ export class BooksListComponent implements OnInit {
     this.bookService.takeBook(this.authService.decodeToken().userid, id).subscribe(() => {
       this.toastr.success("You successfully taken book");
       this.getBooks(this.pageSize, this.pageNumber);
-      this.getBooksOfUser();
     }, error => {
       this.toastr.error(error.error);
     })
@@ -107,18 +94,19 @@ export class BooksListComponent implements OnInit {
 
   getBooks(pageSize, pageNumber) {
     this.bookService.getAllBooks({ count: pageSize, pageNumber: pageNumber }).subscribe((res) => {
-      this.books = res.books;
-      this.dataSource = new MatTableDataSource<Book>(this.books);
-      this.dataSource.sort = this.sort;
-      this.length = res.count;
+      this.getBooksOfUser().subscribe((getBooksOfUser) => {
+          this.userBooks = getBooksOfUser;
+          this.books = res.books;
+          this.dataSource = new MatTableDataSource<Book>(this.books);
+          this.dataSource.sort = this.sort;
+          this.length = res.count;
+      })
     });
   }
-  isAdminTable() {
-    let res = this.isAdmin();
-    if (!res) {
+  setTableColumns() {
+    if (!this.isAdmin()) {
       this.displayedColumns = ['name', 'amount', 'available', 'authors'];
     }
-    return res;
   }
 
   isAdmin() {
